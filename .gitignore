@@ -19,3 +19,4 @@ sandbox/.gradle/4.2.1/fileHashes/fileHashes.lock
 sandbox/.gradle/4.2.1/taskHistory/fileSnapshots.bin
 .gitignore.gitignore
 sandbox/build/classes/java/main/MyFirstProgram.class
+.idea/workspace.xml
