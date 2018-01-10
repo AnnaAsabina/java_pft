@@ -1,4 +1,4 @@
-package ru.stqa.pft.PointProgramm;
+package ru.stqa.pft.sandbox;
 
 
 public class Point {
@@ -16,6 +16,6 @@ public class Point {
     return Math.sqrt(AC + BC);
   }
 
-  }
+}
 
 

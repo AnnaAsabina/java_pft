@@ -1,5 +1,5 @@
 
-package ru.stqa.pft.PointProgramm;
+package ru.stqa.pft.sandbox;
 
 public class PointDistanceProgramm {
   public static void main(String[] args) {
