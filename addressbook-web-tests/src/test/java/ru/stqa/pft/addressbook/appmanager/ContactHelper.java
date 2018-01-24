@@ -7,7 +7,7 @@ import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
 
   public ContactHelper(WebDriver wd) {
@@ -26,7 +26,8 @@ public class ContactHelper extends HelperBase{
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-  public void submitEdition(){
+
+  public void submitEdition() {
     click(By.name("submit"));
   }
 
@@ -35,7 +36,41 @@ public class ContactHelper extends HelperBase{
     click(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
   }
 
-  public void submitContactModification(){click(By.name("update"));
+  public void submitContactModification() {
+    click(By.name("update"));
   }
 
+  public void gotoNewAddressPage() {
+    click(By.linkText("add new"));
+  }
+
+
+  private void gotoHomePage() {
+    if (isElementPresent(By.id("maintable"))){
+      return;
+    }
+    click(By.linkText("home"));
+  }
+
+
+
+  public void CreateContact(ContactData contact) {
+    gotoNewAddressPage();
+    fillForCheckContactForm(contact);
+    submitEdition();
+    gotoHomePage();
+  }
+
+  private void fillForCheckContactForm(ContactData contact) {
+    type(By.name("firstname"), contact.getName());
+    type(By.name("middlename"), contact.getMiddleName());
+    type(By.name("lastname"), contact.getLastName());
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
+  }
 }
+
+

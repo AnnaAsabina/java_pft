@@ -3,6 +3,7 @@
     <words>
       <w>firstname</w>
       <w>lastname</w>
+      <w>maintable</w>
       <w>middlename</w>
       <w>otchestvo</w>
       <w>programm</w>

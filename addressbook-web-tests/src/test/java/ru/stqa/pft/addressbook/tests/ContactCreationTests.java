@@ -8,7 +8,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testCroupCreation() {
-    app.getNavigationHelper().gotoNewAddressPage();
+    app.getContactHelper().gotoNewAddressPage();
     app.getContactHelper().fillContactForm(new ContactData ("Anna","Pavlovna","Asabina", "test1"), true);
     app.getContactHelper().submitEdition();
     app.getNavigationHelper().gotoHomePage();
