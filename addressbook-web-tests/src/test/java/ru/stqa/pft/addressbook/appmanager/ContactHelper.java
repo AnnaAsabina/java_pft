@@ -71,6 +71,15 @@ public class ContactHelper extends HelperBase {
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[3]/td[8]/a/img"));
   }
+
+  public void CheckTheContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void DeleteContact() {
+    click(By.cssSelector("input[value='Delete']"));
+
+  }
 }
 
 
