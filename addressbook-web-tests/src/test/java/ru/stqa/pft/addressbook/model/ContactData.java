@@ -1,13 +1,15 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+   private final String id;
     private final String name;
     private final String middlename;
     private final String lastname;
   private String group;
 
 
-  public ContactData(String name, String middlename, String lastname, String group) {
+  public ContactData(String id,String name, String middlename, String lastname, String group) {
+    this.id = id;
     this.name = name;
     this.middlename = middlename;
     this.lastname =lastname;
@@ -15,6 +17,17 @@ public class ContactData {
   }
 
 
+  public ContactData(String name, String middlename, String lastname, String group) {
+    this.id = null;
+    this.name = name;
+    this.middlename = middlename;
+    this.lastname =lastname;
+    this.group = group;
+  }
+
+  public String getId() {
+    return id;
+  }
 
   public String getName() {
     return name;
@@ -29,6 +42,33 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
+    return name != null ? name.equals(that.name) : that.name == null;
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
+    return result;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            '}';
+  }
+
 }
 
 
