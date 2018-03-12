@@ -1,13 +1,11 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -15,13 +13,13 @@ public class ContactCreationTests extends TestBase {
 
   @Test(enabled = false)
   public void testCroupCreation() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().HomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().gotoNewAddressPage();
     ContactData contact = new ContactData("Anna","Pavlovna","Asabina", "test1");
     app.getContactHelper().fillContactForm(contact, true);
     app.getContactHelper().submitEdition();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().HomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(),before.size()+1);
 
