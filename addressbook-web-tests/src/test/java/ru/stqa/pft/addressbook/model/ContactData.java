@@ -1,52 +1,13 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-   private int id;
-    private final String name;
-    private final String middlename;
-    private final String lastname;
+  private int id =0;
+  private String name;
+  private String middlename;
+  private String lastname;
   private String group;
 
 
-  public ContactData(int id,String name, String middlename, String lastname, String group) {
-    this.id = 0;
-    this.name = name;
-    this.middlename = middlename;
-    this.lastname =lastname;
-    this.group = group;
-  }
-
-
-  public ContactData(String name, String middlename, String lastname, String group) {
-    this.id = 0;
-    this.name = name;
-    this.middlename = middlename;
-    this.lastname =lastname;
-    this.group = group;
-  }
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    return name != null ? name.equals(that.name) : that.name == null;
-  }
-
-  public void setId(int id) {
-    this.id = id;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    return result;
-  }
 
   public int getId() {
     return id;
@@ -55,7 +16,10 @@ public class ContactData {
   public String getName() {
     return name;
   }
-  public String getMiddleName () { return middlename;}
+
+  public String getMiddleName() {
+    return middlename;
+  }
 
   public String getLastName() {
     return lastname;
@@ -66,14 +30,55 @@ public class ContactData {
     return group;
   }
 
+
+
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+
+  public ContactData withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", name='" + name + '\'' +
             '}';
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    return id == that.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return id;
+  }
 }
 
 

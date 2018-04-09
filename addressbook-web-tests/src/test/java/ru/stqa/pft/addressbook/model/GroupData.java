@@ -42,10 +42,7 @@ public class GroupData {
             '}';
   }
 
-  public GroupData withId(int id) {
-    this.id = id;
-    return this;
-  }
+
 
   public int getId() {
     return id;
@@ -61,6 +58,12 @@ public class GroupData {
 
   public String getFooter() {
     return footer;
+  }
+
+
+  public GroupData withId(int id) {
+    this.id = id;
+    return this;
   }
 
   public GroupData withName(String name) {

@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -9,25 +10,25 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTests extends  TestBase {
-  @Test (enabled = false)
-  public void testContactModification() {
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.goTo().HomePage();
-    if(!app.getContactHelper().isThereAContact()){
-      app.getContactHelper().CreateContact(new ContactData ("Anna","Pavlovna","Asabina", "test1"));
+    if (app.contact().list().size()==0) {
+      app.contact().create(new ContactData().withName("Anna").withMiddlename("Pavlovna").withLastname("Asabina").withGroup("test1"));
     }
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().CheckTheContact(before.size()-1);
-    app.getContactHelper().initContactModification();
-    ContactData contact = new ContactData(before.get(before.size()-1).getId(),"Sergey", "Pavlovna", "Asabina", null);
-    app.getContactHelper().fillContactForm((contact), false);
-    app.getContactHelper().submitContactModification();
-    app.goTo().HomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+  }
+  @Test
+  public void testContactModification() {
+    List<ContactData> before = app.contact().list();
+    int index = before.size()-1;
+    ContactData contact = new ContactData().withId(before.get(index).getId()).withName("Alla").withMiddlename("Pavlovna").withLastname("Asabina").withGroup("test1");
+    app.contact().modify(index, contact);
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(before.size(),after.size());
     System.out.println(before);
     System.out.println(after);
 
-    before.remove(before.size()-1);
+    before.remove(index);
     before.add(contact);
     Comparator<? super ContactData> byId =(c1,c2)-> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);
@@ -35,4 +36,6 @@ public class ContactModificationTests extends  TestBase {
     //Assert.assertEquals(new HashSet<Object>(before),new HashSet<Object>(after));
     Assert.assertEquals(before,after);
   }
+
+
 }

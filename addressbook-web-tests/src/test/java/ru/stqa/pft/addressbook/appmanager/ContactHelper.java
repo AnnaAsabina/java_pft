@@ -18,14 +18,14 @@ public class ContactHelper extends HelperBase {
     super(wd);
   }
 
-  public void fillContactForm(ContactData objectData, boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
 
-    type(By.name("firstname"), objectData.getName());
-    type(By.name("middlename"), objectData.getMiddleName());
-    type(By.name("lastname"), objectData.getLastName());
+    type(By.name("firstname"), contactData.getName());
+    type(By.name("middlename"), contactData.getMiddleName());
+    type(By.name("lastname"), contactData.getLastName());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(objectData.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -63,13 +63,32 @@ public class ContactHelper extends HelperBase {
 
 
 
-  public void CreateContact(ContactData contact) {
+ public void create(ContactData contact) {
     gotoNewAddressPage();
     fillForCheckContactForm(contact);
     submitEdition();
+    gotoHomePage(); }
+
+  public void createcontact(ContactData contact) {
+   fillContactForm(contact, true);
+   submitEdition();
+   gotoHomePage();
+  }
+
+
+  private void createnew(ContactData contact) {
+   fillContactForm(contact, true);
+ submitEdition();
     gotoHomePage();
   }
 
+  public void modify(int index, ContactData contact) {
+    CheckTheContact(index);
+    initContactModification();
+    fillContactForm((contact), false);
+    submitContactModification();
+    gotoHomePage();
+  }
   private void fillForCheckContactForm(ContactData contact) {
     type(By.name("firstname"), contact.getName());
     type(By.name("middlename"), contact.getMiddleName());
@@ -93,19 +112,22 @@ public class ContactHelper extends HelperBase {
     click(By.cssSelector("input[value='Delete']"));
     CloseAlert();
   }
-
+  public void delete(int index) {
+    CheckTheContact(index);
+    DeleteContact();
+    gotoHomePage();
+  }
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<>();
     List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']//tr[@name='entry']"));
     for (WebElement element: elements){
       String name = element.findElement(By.xpath(".//td[3]")).getText();
        int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id,name,null,null,null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withName(name));
     }
     return contacts;
   }
