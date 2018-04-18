@@ -7,7 +7,20 @@ public class ContactData {
   private String lastname;
   private String group;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
 
+    ContactData that = (ContactData) o;
+
+    return id == that.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return id;
+  }
 
   public int getId() {
     return id;
@@ -65,20 +78,6 @@ public class ContactData {
             '}';
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    return id == that.id;
-  }
-
-  @Override
-  public int hashCode() {
-    return id;
-  }
 }
 
 
