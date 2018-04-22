@@ -6,7 +6,38 @@ public class ContactData {
   private String middlename;
   private String lastname;
   private String group;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
 
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData  withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+
+  public String getHomePhone() {
+    return homePhone;
+  }
+
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+
+  public String getWorkPhone() {
+    return workPhone;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
