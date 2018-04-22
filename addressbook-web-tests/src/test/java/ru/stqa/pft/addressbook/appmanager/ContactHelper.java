@@ -68,11 +68,13 @@ public class ContactHelper extends HelperBase {
     gotoNewAddressPage();
     fillForCheckContactForm(contact);
     submitEdition();
+   contactCache = null;
     gotoHomePage(); }
 
   public void createcontact(ContactData contact) {
    fillContactForm(contact, true);
    submitEdition();
+    contactCache = null;
    gotoHomePage();
   }
 
@@ -122,7 +124,7 @@ public class ContactHelper extends HelperBase {
     DeleteContact();
     gotoHomePage();
   }
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
