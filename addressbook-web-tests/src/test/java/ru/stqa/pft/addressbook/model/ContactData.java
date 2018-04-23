@@ -10,6 +10,16 @@ public class ContactData {
   private String mobilePhone;
   private String workPhone;
 
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  private String allPhones;
 
   public ContactData withHomePhone(String homePhone) {
     this.homePhone = homePhone;
@@ -108,6 +118,7 @@ public class ContactData {
             ", name='" + name + '\'' +
             '}';
   }
+
 
 }
 
