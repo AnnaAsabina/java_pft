@@ -15,14 +15,14 @@ public class ContactEmailTests extends TestBase {
   @BeforeMethod
  public void ensurePreconditions() {
           app.goTo().HomePage();
-           if (app.contact().all().size() == 0) {
+           if (app.contact().allcont().size() == 0) {
                app.contact().create(new ContactData().withName("testFirstName1").withHomePhone("11111").withMobilePhone("22222").withWorkPhone("333333").withGroup("testName"), true);
              }
       }
   @Test
      public void testContactEmail(){
     app.goTo().HomePage();
-          ContactData contact = app.contact().allemails().iterator().next();
+          ContactData contact = app.contact().allcont().iterator().next();
            ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
            MatcherAssert.assertThat(contact.getAllEmails(), CoreMatchers.equalTo(mergeEmails(contactInfoFromEditForm)));
      }

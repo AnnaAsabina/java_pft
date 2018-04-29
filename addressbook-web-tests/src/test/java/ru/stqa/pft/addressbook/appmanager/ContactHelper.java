@@ -161,7 +161,7 @@ public class ContactHelper extends HelperBase {
   }
 
 
-    public Set<ContactData> phoneall(){
+    public Set<ContactData> allcont(){
       if (contactCache != null) {
         return new Contacts(contactCache);
       }
@@ -173,16 +173,17 @@ public class ContactHelper extends HelperBase {
       int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
       String lastname = cells.get(1).getText();
       String firstname = cells.get(2).getText();
+      String allemails = cells.get(4).getText();
       String allphones = cells.get(5).getText();
       contactCache.add(new ContactData().withId(id).withName(firstname).withLastname(lastname)
-              .withAllPhones(allphones));
+              .withAllPhones(allphones).withAllEmails(allemails));
     }
       return new Contacts(contactCache);
 
   }
 
 
-  public Set<ContactData> allemails(){
+  /*public Set<ContactData> allemails(){
     if (contactCache != null) {
       return new Contacts(contactCache);
     }
@@ -199,7 +200,7 @@ public class ContactHelper extends HelperBase {
               .withAllPhones(allphones).withAllEmails(allemails));
     }
     return new Contacts(contactCache);
-  }
+  }*/
 
 
 
