@@ -14,6 +14,17 @@ public class ContactData {
   private String email2;
   private String email3;
 
+  public String getAddress() {
+    return address;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  private String address;
+
 
   public String getAllEmails() {
     return allEmails;
