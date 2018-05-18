@@ -19,6 +19,8 @@ public class GroupHelper extends HelperBase {
 
   public void returnToGroupPage() {
     click(By.linkText("group page"));
+    groupCash = null;
+
   }
 
   public void submitGroupCreation() {
